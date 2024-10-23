@@ -7,7 +7,10 @@ const profileSchema = new mongoose.Schema({
         ref: "user"
     },
     name: String,
-    birthDate: Date,
+    kind: {
+        type: String,
+        enum: ["Admiministrador", "Coordenador", "Diarista", "Plantonista"]
+    },
     gender:{
         type: String,
         enum: ["Male", "Female", "None"]

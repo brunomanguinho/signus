@@ -1,25 +1,25 @@
-const {User} = require("../models/users");
+const u = require("../models/users");
 const profileDAO = require("./profileDAO");
 
 module.exports.registerUser = 
-    async (username, password)=>{
-        let user = new User({
-            username: username
+    async (username, password, profile)=>{
+        console.log("trying to create user...");
+        let user = new u.User({
+            username: username,
+            profile: profile
         })
 
         await user.setPassword(password);
         await user.save();
 
-        if (user) {
-            await profileDAO.createProfile(user);
-        }
+        await this.authenticate(username, password)
 
         return user;
     }
 
 module.exports.authenticate = 
-    async(email, password)=>{
-        let user = await User.authenticate()(email, password);
+    async(username, password)=>{
+        let user = await u.User.authenticate()(username, password);
 
         return user;
     }

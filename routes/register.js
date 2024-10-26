@@ -1,9 +1,12 @@
 const express = require("express");
 const router = express.Router();
-const userDAO = require("../dao/userDAO");
+const {register} = require("../models/users");
 
 router.post("/", async (req, res)=>{
-    try{
+    let data = req.body;
+    register(data);
+
+    /*try{
         console.log("api calling...", req.body);
 
         let username = req.body.username;
@@ -34,7 +37,7 @@ router.post("/", async (req, res)=>{
             res.json({success: false, message: "Unknow error while creating user", data: err})
         }
     }
-    
+    */
 })
 
 module.exports = router;

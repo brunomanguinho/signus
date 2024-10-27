@@ -55,6 +55,13 @@ module.exports.register =
         }
     }
 
+module.exports.login = 
+    async(data)=>{
+        let user = await userDAO.authenticate(data.username, data.password);
+
+        return user;
+    }
+
 module.exports.User = User;
 
 module.exports.userSchema = userSchema;

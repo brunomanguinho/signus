@@ -1,11 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Central de atendimentos</title>
-</head>
-<body>
-    Hello <%-profile%>
-</body>
-</html>
+<%-include("partials/header")%>
+    <div class="container">
+        <h1>
+            <%-data.name%>
+        </h1>
+        <p>Leitos: </p>
+        <%data.rooms.forEach(room => {%>
+            <p>Leito <%-room.number%></p>
+        <%});%>
+    </div>
+
+    <form action="/logoff" method="get">
+        <input type="submit" value="logoff" class="btn btn-secondary">
+    </form>
+<%-include("partials/footer")%>

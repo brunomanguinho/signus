@@ -16,20 +16,14 @@ router.get("/", async (req, res)=>{
     scripts.createUnity(req.session.hospital, `Unidade 2`, `unidade2`, 5);
 
     res.redirect("/unidades");
+});
 
-    // if (!req.session.user){
-    //     let user = await scripts.createUser("Unidade1", "Plantonista");
+router.get("/logoff", (req, res)=>{
+    req.logout;
+    req.session.userId = null,
+    req.session.profile = null;
 
-    //     req.session.user = user._id;
-    //     req.session.profile = user.profile;
-    // }
-    
-    // if (req.session.profile === "Plantonista"){
-    //     res.redirect("/unidades");
-    // } else {
-    //     res.end();
-    // }
-        
+    res.redirect("/login");
 })
 
 module.exports = router;

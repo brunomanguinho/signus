@@ -39,6 +39,7 @@ app.use("/login", loginRouter);
 app.use("/unidades", authMiddleware, unityMiddleware, unityRouter);
 
 function authMiddleware(req, res, next){
+    
     if (!req.session.user){
         res.redirect("/login");
         return

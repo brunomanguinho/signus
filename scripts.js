@@ -1,8 +1,7 @@
 const user = require("./models/users");
 const Profile = require("./models/profiles")
 const Hospital = require("./models/hospital");
-const { model } = require("mongoose");
-
+const Unity = require("./models/unities")
 
 module.exports.createHospital = 
     async (hospital)=>{
@@ -12,6 +11,32 @@ module.exports.createHospital =
             h = new Hospital(hospital);
             h.createDate = new Date();
             h.save();
+        }
+
+        return h;
+    }
+
+module.exports.createUnity = 
+    async(hospital_id, name, username, rooms)=>{
+        let user = await this.createUser(username, "Plantonista");
+
+        let roomArray = [];
+
+        for (let i=1 ; i<=rooms; i++){
+            roomArray.push({number: i});
+        }
+
+        let un;
+
+        if (user){
+            un = new Unity({
+                user_id: user._id,
+                hospital: hospital_id,
+                name: name,
+                rooms: roomArray
+            });
+
+            un.save();
         }
     }
 

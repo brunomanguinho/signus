@@ -8,7 +8,7 @@ const hospitalSchema = new mongoose.Schema({
     createDate: Date
 });
 
-const Hospital = mongoose.model("Hospital", hospitalSchema);
+const Hospital = new mongoose.model("Hospital", hospitalSchema);
 
 module.exports = Hospital;
 

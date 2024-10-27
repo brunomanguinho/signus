@@ -24,6 +24,10 @@ const evaluationSchema = new mongoose.Schema({
 })
 
 const unitySchema = new mongoose.Schema({
+    user_id:{
+        type: mongoose.ObjectId,
+        ref: "User"
+    },
     hospital_id:{
         type: mongoose.ObjectId,
         ref: "Hospital"
@@ -39,4 +43,8 @@ const unitySchema = new mongoose.Schema({
             ]
         }
     ]
-})
+});
+
+const Unity = new mongoose.model("Unity", unitySchema);
+
+module.exports = Unity;

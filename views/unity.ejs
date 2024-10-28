@@ -1,4 +1,5 @@
 <%-include("partials/header")%>
+
     <div class="container">
         <h1>
             <%-data.name%>
@@ -7,9 +8,11 @@
         <%data.rooms.forEach(room => {%>
             <p>Leito <%-room.number%></p>
         <%});%>
+
+        <form action="/logoff" method="get">
+            <input type="submit" value="logoff" class="btn btn-primary">
+        </form>
     </div>
 
-    <form action="/logoff" method="get">
-        <input type="submit" value="logoff" class="btn btn-secondary">
-    </form>
+    
 <%-include("partials/footer")%>

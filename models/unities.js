@@ -4,22 +4,16 @@ const schemas = require("./weakschemas");
 
 
 const evaluationSchema = new mongoose.Schema({
-    updates:[{
-        doctor_id:{
-            type: mongoose.ObjectId,
-            ref: "Doctor"
-        },
-        date: Date
-    }],
-    patient: schemas.patientSchema, //necessidade de um model de pacientes?
+    patient: schemas.patientSchema, 
     issues: String,
-    todolist: schemas.todolistSchema,
+    todolist: [schemas.todolistSchema],
     dischargePending:{
         neuro: {type: Boolean, default: false},
         hemo: {type: Boolean, default: false},
         breath: {type: Boolean, default: false},
         nephro: {type: Boolean, default: false},
         lifecare: {type: Boolean, default: false},
+        others: {type: Boolean, default: false},
     }
 })
 
@@ -36,11 +30,13 @@ const unitySchema = new mongoose.Schema({
     rooms:[
         {
             number: Number,
-            evaluations:[//array de avaliações, ou atualizações
-                {
-                    evaluation: evaluationSchema,
-                }
-            ]
+            evaluation: evaluationSchema
+            
+            // evaluations:[//array de avaliações, ou atualizações ??
+            //     {
+            //         evaluation: evaluationSchema,
+            //     }
+            // ]
         }
     ]
 });

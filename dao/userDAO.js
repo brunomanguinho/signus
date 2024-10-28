@@ -10,7 +10,7 @@ module.exports.registerUser =
         await user.setPassword(password);
         await user.save();
 
-        await this.authenticate(username, password)
+        // await this.authenticate(username, password)
 
         return user;
     }

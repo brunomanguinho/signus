@@ -15,7 +15,10 @@ const patientSchema = new mongoose.Schema({
         type: String,
         enum: ["Cirúrgico", "Clínico"]
     },
-    alergies: String,
+    alergies: {
+        have: Boolean,
+        description: String
+    },
 });
 
 const todolistSchema = new mongoose.Schema({

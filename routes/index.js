@@ -12,8 +12,9 @@ router.get("/", async (req, res)=>{
 
     req.session.hospital = h._id;
 
-    scripts.createUnity(req.session.hospital, `Unidade 1`, `unidade1`, 7);
-    scripts.createUnity(req.session.hospital, `Unidade 2`, `unidade2`, 5);
+    scripts.createUnity(h._id, `Unidade 1`, `unidade1`, 7);
+    scripts.createUnity(h._id, `Unidade 2`, `unidade2`, 5);
+    scripts.createUnity(h._id, `Unidade 3`, `unidade3`, 10);
 
     res.redirect("/unidades");
 });

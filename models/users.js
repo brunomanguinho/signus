@@ -34,23 +34,23 @@ module.exports.register =
                 ( (username === "") && (password === "") && (confirmedPassword === "") )
                )
             {
-                return {success: false, message: "One or more arguments is missing"};
+                return {success: false, message: "Está faltando um ou mais argumentos"};
             } else if (password !== confirmedPassword) {
-                return {success: false, message: "Passwords are divergents"};
+                return {success: false, message: "Senhas são divergentes..."};
             } else {
                 let user = await userDAO.registerUser(username, password, data.profile);
     
                 if (user !== null){
-                    return ({success: true, message: "User registered successfully", data: user});
+                    return ({success: true, message: "Usuário registrado com sucesso!", data: user});
                 } else {
-                    return ({success: false, message: "Error while creating user", data: user})
+                    return ({success: false, message: "Erro ao criar usuário", data: user})
                 }
             }
         } catch(err){
             if (err.code === 11000) {
-                return ({success: false, message: `The user ${err.keyValue.username} is already registered`, data: err})
+                return ({success: false, message: `O usuário ${err.keyValue.username} já está registrado`, data: err})
             } else {
-                return ({success: false, message: "Unknow error while creating user", data: err})
+                return ({success: false, message: "Erro desconhecido ao criar usuário", data: err})
             }
         }
     }

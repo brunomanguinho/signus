@@ -20,6 +20,8 @@ router.post("/", async (req, res)=>{
             else{
                 res.send("perfil invalido");
             }
+        }else{
+            res.redirect("/login");
         }
     }catch(err){
         console.log("Erro de login", err);

@@ -1,6 +1,5 @@
 const user = require("./models/users");
-const Profile = require("./models/profiles")
-const Hospital = require("./models/hospital");
+const Hospital = require("./models/hospitals");
 const Unity = require("./models/unities")
 
 module.exports.createHospital = 
@@ -15,6 +14,7 @@ module.exports.createHospital =
 
         return h;
     }
+
 
 module.exports.createUnity = 
     async(hospital_id, name, username, rooms)=>{
@@ -52,7 +52,6 @@ module.exports.createUser =
             console.log("user return", u);
 
             if ( (!u) || (u == null) ){
-                console.log("user not found");
                 let register = await
                     user.register({
                         username: username,
@@ -61,7 +60,6 @@ module.exports.createUser =
                         profile: profiletype
                     });
 
-                console.log("register data", register);
                 return register.data;
             } else{
                 return u;
